@@ -1,0 +1,121 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.class.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/26 13:33:52 by leaugust          #+#    #+#             */
+/*   Updated: 2025/07/26 17:43:13 by leaugust         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Contact.class.hpp"
+#include <cctype>
+#include <iomanip>
+#include <iostream>
+
+Contact::Contact()
+{
+}
+
+Contact::~Contact()
+{
+}
+
+static std::string promptInput(const std::string &fieldName)
+{
+	std::string input;
+	while (true)
+	{
+		std::cout << fieldName;
+		std::getline(std::cin, input);
+		if (!input.empty())
+			return (input);
+		std::cout << "This field can't be empty. Please enter a value." << std::endl;
+	}
+}
+
+static std::string promptName(const std::string &fieldName)
+{
+	bool	valid;
+	char	c;
+
+	std::string input;
+	while (true)
+	{
+		std::cout << fieldName;
+		std::getline(std::cin, input);
+		if (input.empty())
+		{
+			std::cout << "This field can't be empty. Please enter a value." << std::endl;
+			continue ;
+		}
+		valid = true;
+		for (size_t i = 0; i < input.length(); ++i)
+		{
+			c = input[i];
+			if (!std::isalpha(c) && c != ' ' && c != '-')
+			{
+				valid = false;
+				break ;
+			}
+			if (std::isupper(c))
+			{
+				if (i > 0 && input[i - 1] != ' ' && input[i - 1] != '-')
+				{
+					valid = false;
+					break ;
+				}
+			}
+		}
+		if (valid)
+			return (input);
+		std::cout << "Invalid name. Use only letters, spaces or hyphens. No uppercase letters in the middle of a word." << std::endl;
+	}
+}
+
+static std::string promptPhoneNumber(const std::string &fieldName)
+{
+	std::string input;
+	while (true)
+	{
+		std::cout << fieldName;
+		std::getline(std::cin, input);
+		if (input.length() == 10 && input[0] == '0'
+			&& input.find_first_not_of("0123456789") == std::string::npos)
+			return (input);
+		std::cout << "Invalid phone number. It must be exactly 10 digits and start with 0." << std::endl;
+	}
+}
+
+static std::string formatField(const std::string &str)
+{
+	if (str.length() > 10)
+		return (str.substr(0, 9) + ".");
+	return (std::string(10 - str.length(), ' ') + str);
+}
+
+void Contact::setContact()
+{
+	_firstName = promptName("First name: ");
+	_lastName = promptName("Last name: ");
+	_nickname = promptInput("Nickname: ");
+	_phoneNumber = promptPhoneNumber("Phone number: ");
+	_darkestSecret = promptInput("Darkest secret: ");
+}
+
+void Contact::displayContact(int index) const
+{
+	std::cout << std::setw(10) << (index + 1) << "|";
+	std::cout << formatField(_firstName) << "|" << formatField(_lastName) << "|" << formatField(_nickname) << std::endl;
+}
+
+void Contact::displayDetails() const
+{
+	std::cout << "First name: " << _firstName << std::endl;
+	std::cout << "Last name: " << _lastName << std::endl;
+	std::cout << "Nickname: " << _nickname << std::endl;
+	std::cout << "Phone number: " << _phoneNumber << std::endl;
+	std::cout << "Darkest secret: " << _darkestSecret << std::endl;
+}
