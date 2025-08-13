@@ -6,7 +6,7 @@
 /*   By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 23:10:43 by leaugust          #+#    #+#             */
-/*   Updated: 2025/07/26 17:22:10 by leaugust         ###   ########.fr       */
+/*   Updated: 2025/08/13 04:55:43 by leaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ class Contact
 	void displayContact(int index) const;
 	void displayDetails() const;
 
+	std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getNickname() const;
+    std::string getPhoneNumber() const;
+    std::string getDarkestSecret() const;
+	
   private:
 	std::string _firstName;
 	std::string _lastName;

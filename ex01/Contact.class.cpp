@@ -6,7 +6,7 @@
 /*   By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 13:33:52 by leaugust          #+#    #+#             */
-/*   Updated: 2025/08/13 02:56:21 by leaugust         ###   ########.fr       */
+/*   Updated: 2025/08/13 05:08:50 by leaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,26 @@ Contact::Contact()
 
 Contact::~Contact()
 {
+}
+
+std::string Contact::getFirstName() const {
+    return _firstName;
+}
+
+std::string Contact::getLastName() const {
+    return _lastName;
+}
+
+std::string Contact::getNickname() const {
+    return _nickname;
+}
+
+std::string Contact::getPhoneNumber() const {
+    return _phoneNumber;
+}
+
+std::string Contact::getDarkestSecret() const {
+    return _darkestSecret;
 }
 
 static std::string promptInput(const std::string &fieldName)
@@ -104,9 +124,9 @@ void Contact::displayContact(int index) const
 
 void Contact::displayDetails() const
 {
-	std::cout << "First name: " << _firstName << std::endl;
-	std::cout << "Last name: " << _lastName << std::endl;
-	std::cout << "Nickname: " << _nickname << std::endl;
-	std::cout << "Phone number: " << _phoneNumber << std::endl;
-	std::cout << "Darkest secret: " << _darkestSecret << std::endl;
+    std::cout << "First name: " << getFirstName() << std::endl;
+    std::cout << "Last name: " << getLastName() << std::endl;
+    std::cout << "Nickname: " << getNickname() << std::endl;
+    std::cout << "Phone number: " << getPhoneNumber() << std::endl;
+    std::cout << "Darkest secret: " << getDarkestSecret() << std::endl;
 }
