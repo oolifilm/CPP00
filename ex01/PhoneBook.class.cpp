@@ -6,7 +6,7 @@
 /*   By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 16:23:52 by leaugust          #+#    #+#             */
-/*   Updated: 2025/07/26 17:43:22 by leaugust         ###   ########.fr       */
+/*   Updated: 2025/08/13 03:15:36 by leaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,24 @@ void PhoneBook::searchContact() const
 	std::cout << "-------------------------------------------" << std::endl;
 	for (int i = 0; i < totalContacts && i < 8; ++i)
 		contacts[i].displayContact(i);
-	std::cout << "Enter the index of the contact to display: ";
 	std::string input;
-	std::getline(std::cin, input);
-	if (input.length() != 1 || input[0] < '1' || input[0] > '8')
+	int index;
+	while (true)
 	{
-		std::cout << "Invalid index." << std::endl;
-		return ;
-	}
-	int index = input[0] - '1';
-
-	if (index >= totalContacts)
-	{
-		std::cout << "No contact at this index." << std::endl;
-		return ;
+		std::cout << "Enter the index of the contact to display: ";
+		std::getline(std::cin, input);
+		if (input.length() != 1 || input[0] < '1' || input[0] > '8')
+		{
+			std::cout << "Invalid index. Please try again." << std::endl;
+			continue ;
+		}
+		index = input[0] - '1';
+		if (index >= totalContacts)
+		{
+			std::cout << "No contact at this index. Please try again." << std::endl;
+			continue ;
+		}
+		break ;
 	}
 	contacts[index].displayDetails();
 }

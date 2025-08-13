@@ -6,7 +6,7 @@
 #    By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/25 21:13:44 by leaugust          #+#    #+#              #
-#    Updated: 2025/07/26 16:58:02 by leaugust         ###   ########.fr        #
+#    Updated: 2025/07/29 15:30:32 by leaugust         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC_PATH = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ_PATH = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: $(NAME)
-	@printf "$(BLUE)Welcome to EX01 of CPP01\n$(RESET)"
+	@printf "$(BLUE)Welcome to EX01 of CPP00\n$(RESET)"
 
 $(NAME): $(OBJ_PATH)
 	@echo "$(PURPLE)Compiling [$(NAME)]...$(RESET)"

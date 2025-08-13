@@ -6,7 +6,7 @@
 /*   By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 13:33:52 by leaugust          #+#    #+#             */
-/*   Updated: 2025/07/26 17:43:13 by leaugust         ###   ########.fr       */
+/*   Updated: 2025/08/13 02:56:21 by leaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static std::string promptInput(const std::string &fieldName)
 
 static std::string promptName(const std::string &fieldName)
 {
-	bool	valid;
 	char	c;
+	size_t	i;
 
 	std::string input;
 	while (true)
@@ -51,27 +51,18 @@ static std::string promptName(const std::string &fieldName)
 			std::cout << "This field can't be empty. Please enter a value." << std::endl;
 			continue ;
 		}
-		valid = true;
-		for (size_t i = 0; i < input.length(); ++i)
+		i = 0;
+		for (; i < input.length(); ++i)
 		{
 			c = input[i];
 			if (!std::isalpha(c) && c != ' ' && c != '-')
 			{
-				valid = false;
+				std::cout << "Invalid name. Use only letters, spaces or hyphens." << std::endl;
 				break ;
 			}
-			if (std::isupper(c))
-			{
-				if (i > 0 && input[i - 1] != ' ' && input[i - 1] != '-')
-				{
-					valid = false;
-					break ;
-				}
-			}
 		}
-		if (valid)
+		if (i == input.length())
 			return (input);
-		std::cout << "Invalid name. Use only letters, spaces or hyphens. No uppercase letters in the middle of a word." << std::endl;
 	}
 }
 
